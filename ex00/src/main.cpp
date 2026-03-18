@@ -1,50 +1,77 @@
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include "WrongCat.hpp"
-#include "WrongAnimal.hpp"
+#include "Bureaucrat.hpp"
+#include <iostream>
 
-void	testAnimal()
-{
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	delete(meta);
-	delete(j);
-	delete(i);
-}
+int main(void) {
+  try {
+    Bureaucrat linus("Linus", 20);
+    std::cout << linus << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
 
-void	testWrongAnimal()
-{
-	const WrongAnimal* meta = new WrongAnimal();
-	const WrongAnimal* i = new WrongCat();
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	meta->makeSound();
-	delete(meta);
-	delete(i);
-}
+  std::cout << "\n";
 
+  try {
+    Bureaucrat bill("Bill", 151);
+    std::cout << bill << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
 
-void	draw_separation(void)
-{
-	std::cout	<< "\n\n"
-				<< "\033[37m-=-=-=-=-=-=-=-=-=-"	<< std::endl
-				<< "-=TEST  SEPARATOR=-"			<< std::endl
-				<< "-=-=-=-=-=-=-=-=-=-\033[0m"
-				<< "\n\n"
-				<<std::endl;
-}
+  std::cout << "\n";
 
-//the difference between animal and wrong animal is the virtual in makeSound
-//with polymorphism if no virtual, the parent functions will be called
-int	main() {
-	testAnimal();
-	draw_separation();
-	testWrongAnimal();
+  try {
+    Bureaucrat steve("Steve", 0);
+    std::cout << steve << std::endl;
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  std::cout << "\n";
+
+  try {
+    Bureaucrat alpha("Alpha", 1);
+    std::cout << alpha << std::endl;
+    alpha.increm();
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  std::cout << "\n";
+
+  try {
+    Bureaucrat beta("Beta", 130);
+    std::cout << beta << std::endl;
+    beta.increm();
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  std::cout << "\n";
+
+  try {
+    Bureaucrat zeta("Zeta", 149);
+    std::cout << zeta << std::endl;
+    zeta.decrem();
+    zeta.decrem();
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  std::cout << "\n";
+
+  try {
+    Bureaucrat igor("Igor", 148);
+    igor.decrem();
+    Bureaucrat grichka(igor);
+    grichka.decrem();
+    grichka.decrem();
+    grichka.decrem();
+    grichka.decrem();
+    grichka.decrem();
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  std::cout << "\n";
 }
