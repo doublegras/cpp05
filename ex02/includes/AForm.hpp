@@ -8,7 +8,7 @@ class Bureaucrat;
 class AForm {
 public:
   AForm(std::string name, int sign, int exec);
-  ~AForm();
+  virtual ~AForm();
   AForm(const AForm &form);
   AForm &operator=(const AForm &form);
 
@@ -17,7 +17,7 @@ public:
   int gradeRequiredToSign() const;
   int gradeRequiredToExec() const;
   void execute(Bureaucrat const &executor) const;
-  void executeForm(AForm const &form) const;
+  virtual void executeForm() const = 0;
 
   void beSigned(Bureaucrat &b);
 
@@ -36,6 +36,13 @@ public:
   };
 
   class AlreadySignedException : public std::exception {
+  public:
+    virtual const char *what() const
+        throw(); // throw() tells the compiler that this method wont throw any
+                 // exception
+  };
+
+  class NotSignedException : public std::exception {
   public:
     virtual const char *what() const
         throw(); // throw() tells the compiler that this method wont throw any
