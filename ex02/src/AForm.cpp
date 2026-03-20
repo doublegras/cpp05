@@ -90,3 +90,5 @@ std::ostream &operator<<(std::ostream &stream, AForm &f) {
   stream << "______________________________" << std::endl;
   return stream;
 }
+
+void AForm::setIsSigned(bool isSigned) { _signed = isSigned; }

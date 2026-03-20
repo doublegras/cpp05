@@ -14,6 +14,7 @@ public:
 
   std::string getName() const;
   bool isSigned() const;
+  void setIsSigned(bool isSigned);
   int gradeRequiredToSign() const;
   int gradeRequiredToExec() const;
   void execute(Bureaucrat const &executor) const;

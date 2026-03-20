@@ -51,7 +51,7 @@ void Bureaucrat::decrem() {
   std::cout << _name << "'s grade is now " << _grade << std::endl;
 }
 
-void Bureaucrat::signForm(Form &f) {
+void Bureaucrat::signForm(AForm &f) {
   std::cout << _name << " tries to sign form " << f.getName() << std::endl;
   try {
     f.beSigned(*this);
@@ -78,4 +78,16 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 std::ostream &operator<<(std::ostream &stream, Bureaucrat &b) {
   stream << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
   return stream;
+}
+
+void Bureaucrat::executeForm(AForm const &form) const {
+  try {
+    form.execute(*this);
+  } catch (std::exception &e) {
+    std::cout << _name << " couldn't execute " << form.getName() << " because "
+              << e.what() << std::endl;
+    return;
+  }
+  std::cout << "\033[32m" << _name << " executed " << form.getName()
+            << "\033[0m" << std::endl;
 }
