@@ -25,15 +25,8 @@ int main(void) {
     Bureaucrat steve("Steve", 137);
     std::cout << steve << std::endl;
     ShrubberyCreationForm form("home");
-    ShrubberyCreationForm form2("POPO");
 
-    std::cout << "FORM2" << std::endl;
-    std::cout << form2 << std::endl;
     std::cout << form << std::endl;
-
-    form2 = form;
-    std::cout << "AFTER COPY" << std::endl;
-    std::cout << form2 << std::endl;
     linus.executeForm(form);
     linus.signForm(form);
     bill.signForm(form);
